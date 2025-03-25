@@ -1,0 +1,187 @@
+
+body {
+    font-family: 'Verdana', sans-serif; /* Buena práctica: definir una fuente base */
+}
+h1 {
+    font-size: 1.5rem; /* Tamaño base, se ajustará con media queries */
+    text-align: center; /* Centrado en lugar de la etiqueta <center> */
+    margin-bottom: 1rem;
+}
+h2{
+    font-size: clamp(1.2rem, 4vw, 2rem);
+
+}
+ /* Banner principal */
+        .banner-principal {
+            width: 100%; /* Ancho completo */
+            height: auto; /* Altura automática para mantener la proporción */
+            display: block; /* Elimina espacio extra debajo de la imagen */
+            margin-bottom: 1rem; /*Espacio debajo del banner*/
+        }
+
+        .carousel-caption h5 {
+            font-size: 1.2rem; /* Tamaño de fuente para pantallas pequeñas */
+        }
+
+        .carousel-caption p {
+            font-size: 0.9rem; /* Tamaño de fuente para pantallas pequeñas */
+        }
+
+        /* Iframe (YouTube) - Lo hacemos responsivo */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Proporción 16:9 para el video */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Pie de página */
+        .pie-pagina {
+            text-align: left; /* Alineación a la izquierda */
+            font-size: 0.8rem; /* Tamaño de fuente más pequeño */
+            color: #000000;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+        .pie-pagina-content{
+            text-align: center;
+        }
+
+        /* Media Queries (adaptaciones para pantallas más grandes) */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3.5rem; /* Título más grande en tablets/escritorio */
+            }
+
+            .menu-enlaces li {
+                display: inline-block; /* Enlaces en línea en pantallas más grandes */
+                border-bottom: none; /* Eliminamos el border-bottom */
+                border-right: 1px solid #99c9dd;/*Usamos border-right para separar */
+            }
+             .menu-enlaces li:last-child {
+               border-right: none; /* Quitamos el borde del último elemento */
+            }
+
+
+            .carousel-caption h5 {
+                font-size: 1.8rem; /* Leyendas más grandes en tablets/escritorio */
+            }
+
+            .carousel-caption p {
+                font-size: 1.2rem;
+            }
+
+            .video-container {
+                /* Puedes ajustar el padding-bottom para cambiar la altura del video en pantallas grandes */
+                /* padding-bottom: 45%;  Por ejemplo */
+            }
+        }
+        /*nuevos estilos*/
+        .carousel-margin{
+            margin: 0 10%;
+            display: flex;
+            justify-content: center;
+        }
+          .video-margin{
+            margin: 0 10%;
+            display: flex;
+            justify-content: center;
+        }
+
+.timeline {
+    position: relative;
+    padding: 20px;
+    margin: 2rem auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 2px;
+    background-color: #792b99;
+}
+
+.event {
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 60px; /* Espacio para la fecha y el contenido */
+}
+
+.event-date {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    text-align: right;
+    color: #888;
+    font-size: 0.9rem; /* Slightly smaller date font size */
+}
+
+.event-content {
+    background-color: #c0e3f3;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.event-content h3 {
+    font-size: 1.1rem; /* Slightly smaller title in content */
+    margin-top: 0; /* Reset default margin */
+}
+
+.event-content p {
+    font-size: 1rem;
+    margin-bottom: 0; /* Reset default margin */
+}
+
+.event-image-container {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.event-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    display: inline-block;
+}
+
+/* Media Queries for Mobile Responsiveness (ADDED NOW) */
+@media (max-width: 768px) {
+    /* ... otros estilos para móvil ... */
+
+    .event {
+        padding-left: 60px; /* Mantenemos este valor por ahora, pero podríamos ajustarlo si es necesario */
+        margin-bottom: 15px;
+    }
+
+    .event-date {
+        width: 45px;
+        font-size: 0.85rem;
+        left: 16px;    /* REDUCIDO left a 16px - Más cerca de la línea, pero con esperanza sin superponerse */
+    }
+}
+    .event-content {
+        padding: 8px; /* Reduced content padding on mobile */
+    }
+
+    .event-content h3 {
+        font-size: 1rem; /* Further reduce title font size in content for mobile */
+    }
+
+    .event-content p {
+        font-size: 0.9rem; /* Further reduce paragraph font size in content for mobile */
+    }
+

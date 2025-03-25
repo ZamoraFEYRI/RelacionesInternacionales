@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Línea de Tiempo del Sistema Internacional</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="timeline.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff; /* Fondo blanco */
+            color: #333;
+            line-height: 1.6;
+        }
+        .banner-principal {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+            display: block;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #2196f3; /* Un tono azul más fuerte para el título */
+            font-weight: bold;
+        }
+        h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #3498db;
+            text-align: center;
+        }
+        p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: #555;
+            text-align: justify;
+        }
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            width: 4px;
+            height: 100%;
+            background-color: #81d4fa; /* Un tono azul para la línea de tiempo */
+        }
+        .event {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .event-date {
+            position: absolute;
+            top: 0;
+            width: 45%;
+            text-align: right;
+            padding-right: 1rem;
+            font-weight: bold;
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+        .event-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem;
+            margin-left: 50%;
+            width: 40%;
+            position: relative;
+            border: 1px solid #eee;
+            margin-left: calc(50% - 40%/2);
+        }
+        .event-content::before {
+            content: '';
+            position: absolute;
+            top: 1rem;
+            right: 100%;
+            border: 10px solid transparent;
+            border-right-color: #fff;
+        }
+        .event:nth-child(odd) .event-date {
+            text-align: left;
+            padding-left: 1rem;
+            padding-right: 0;
+        }
+        .event:nth-child(odd) .event-content {
+            margin-left: calc(50% - 40%/2);
+            margin-right: auto;
+        }
+        .event:nth-child(odd) .event-content::before {
+            left: auto;
+            right: 100%;
+            border-left-color: #fff;
+        }
+        .table-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #fff;
+            overflow: hidden;
+            font-size: 1.1rem;
+            border: none;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            border: none;
+        }
+        th {
+            background-color: #b0e0e6; /* Un tono azul para los encabezados de la tabla */
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s ease-in-out;
+        }
+        img:hover {
+            transform: scale(1.03);
+        }
+        .pdf-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            margin-top: 1rem;
+            font-weight: 500;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .pdf-link:hover {
+            background-color: #217dbb;
+            transform: scale(1.05);
+        }
+        @media (max-width: 768px) {
+            .event-date {
+                width: 100%;
+                text-align: center;
+                padding: 0.5rem 0; /* Ajusta el padding para acercar fecha y contenido */
+            }
+            .event-content {
+                margin-left: 0;
+                width: 100%;
+            }
+            .event-content::before {
+                display: none;
+            }
+            .timeline::before {
+                left: 20px;
+            }
+            .event:nth-child(odd) .event-content {
+                margin-right: 0;
+            }
+            table {
+                display: block;
+                overflow-x: auto;
+                width: 100%;
+            }
+             h1{
+                font-size: 2rem;
+            }
+             h3{
+                font-size: 1.2rem
+            }
+             p{
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="imagenes/banner1.jpg" class="banner-principal" alt="Banner Principal">
+    <h1><Center>LÍNEA TEMPORAL DEL SISTEMA INTERNACIONAL</Center></h1>
+    
+    <div class="table-container">
+        <table border="0" style="border-collapse: separate; border-spacing: 15px;">
+            <tr style="background-color: #f0f0f0;">
+                <td align="center"  >
+                    <a href="index.html" style="text-decoration: none; color:#000000;"> • Página principal</a><br>
+                    <a href="sistemadeciudades.html" style="text-decoration: none; color:#000000;">  • El sistema de ciudades-Estado e imperios</a><br>
+                    <a href="westfalia.html" style="text-decoration: none; color:#000000;">  • El sistema de Westfalia 1648-1818</a><br>
+                    <a href="balance.html" style="text-decoration: none; color:#000000;">  • El sistema del balance del poder 1815-1919 </a><br>
+                    <a href="seguridad.html" style="text-decoration: none; color:#000000;">  • El sistema de seguridad colectiva 1919-1945</a><br>
+                    <a href="bipolar.html" style="text-decoration: none; color:#000000;">  • El sistema bipolar 1945-1991 </a><br>
+                    <a href="contemporaneo.html" style="text-decoration: none; color:#000000;">  • El sistema contemporáneo 1991-2023</a><br>
+                </td>
+            </tr>
+        </table>
+    </div>
+        <br>
+    
+    <div class="timeline">
+        <div class="event">
+            
+            <div class="event-content" style="width: 80%; margin-left: calc(50% - 80%/2);">
+                <h3>El sistema de ciudades-Estado e imperios</h3>
+                <p>
+                    Este período abarca desde el surgimiento de las primeras ciudades-estado en Mesopotamia hasta el desarrollo de grandes imperios que buscaban expandir su dominio territorial y su influencia en la región.
+                </p>
+                
+            </div>
+            <br>
+    <div class="timeline">
+        <div class="event">
+            <div class="event-date" style="text-align: left; margin-left: 0; padding-left: 0; margin-bottom: 0.5rem;">4100 a.C-1750 a.C</div>
+            <div class="event-content" style="width: 70%; margin-left: calc(50% - 70%/2);">
+                <center> <h3><b>Primeros imperios Mesopotámicos:</b></h3> </center>
+                <p><center>
+                    Sumeria inventó la escritura y la rueda. Babilonia destacó por su código de leyes y avances científicos. Asiria se caracterizó por su poderío militar y expansión territorial, llegando a conquistar Babilonia.
+                </center></p>
+                <div class="image-container">
+                    <img src="imagenes/1.jpg" alt="Primeros imperios Mesopotámicos">
+                </div>
+            </div>
+        </div>
+    <div class="event">
+        <div class="event-date" style="text-align: left; margin-left: 0; padding-left: 0; margin-bottom: 0.5rem;">1274 a.C.</div>
+        <div class="event-content" style="width: 70%; margin-left: calc(50% - 70%/2);">
+            <center>  <h3><b>Egipto e Imperio Griego:</b></h3> </center>
+            <p><center>Egipto e hititas lucharon por el control de Kadesh, un importante centro comercial. Este conflicto culminó en el primer tratado de paz conocido de la historia. En Grecia, la Guerra del Peloponeso enfrentó a Esparta y Atenas, resultando en la victoria de Esparta y el declive de la hegemonía ateniense. </p></center>
+            <div class="image-container">
+                <img src="imagenes/2.jpg" alt="Egipto e Imperio Griego">
+            </div>
+        </div>
+    </div>
+    <div class="event">
+        <div class="event-date" style="text-align: left; margin-left: 0; padding-left: 0; margin-bottom: 0.5rem;">VI a. C.</div>
+        <div class="event-content" style="width: 70%; margin-left: calc(50% - 70%/2);">
+            <center>  <h3><b>Judaísmo, Cristianismo, y aparición de Mahoma:</b></h3></center>
+            <p><center>   El judaísmo es la más antigua de estas religiones monoteístas y sentó las bases para el cristianismo y el islam. El cristianismo se centra en la figura de Jesús y su mensaje de salvación. El islam, revelado a Mahoma, se basa en las enseñanzas del Corán.
+            </center></p>
+            <div class="image-container">
+                <img src="imagenes/3.jpg" alt="Judaísmo, Cristianismo, y aparición de Mahoma">
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="event">
+        <div class="event-date" style="text-align: left; margin-left: 0; padding-left: 0; margin-bottom: 0.5rem;">27 a.C hasta el 476 d.C.</div>
+        <div class="event-content" style="width: 70%; margin-left: calc(50% - 70%/2);">
+            <center>  <h3><b>Surgimiento, auge y caída del Imperio Romano de Occidente, Inicio del Feudalismo:</b></h3> </center>
+            <p><center>El Imperio Romano de Occidente experimentó un período de auge antes de su eventual división y caída en 476 d.C. Este evento marcó el inicio de la Edad Media y el surgimiento del feudalismo como sistema socioeconómico en Europa.
+            </center></p>
+            <div class="image-container">
+                <img src="imagenes/4.jpg" alt="Imperio Romano de Occidente y Feudalismo">
+            </div>
+        </div>
+    </div>
+    <div class="event">
+        <div class="event-date" style="text-align: left; margin-left: 0; padding-left: 0; margin-bottom: 0.5rem;">1453</div>
+        <div class="event-content" style="width: 70%; margin-left: calc(50% - 70%/2);">
+            <center>     <h3><b>Caída del Imperio Romano Oriental (fin del feudalismo) y la Colonización de América:</b></h3> </center>
+            <p><center>
+                   La caída de Constantinopla en 1453 tuvo un impacto significativo en el comercio y la geopolítica europea. La colonización de América, que comenzó en 1492, transformó el mundo. Estos eventos coincidieron con el declive del feudalismo debido al ascenso de la burguesía y las crisis demográficas.
+            </center></p>
+            <div class="image-container">
+                <img src="imagenes/5.jpg" alt="Caída del Imperio Romano Oriental y Colonización de América">
+            </div>
+        </div>
+    </div>
+    <div class="event">
+        <div class="event-date" style="text-align: left; margin-left: 0; padding-left: 0; margin-bottom: 0.5rem;">1618-1648</div>
+        <div class="event-content" style="width: 70%; margin-left: calc(50% - 70%/2);">
+            <center>  <h3><b>La Guerra de los Treinta Años y Paz de Westfalia:</b></h3> </center>
+            <p><center>La Guerra de los Treinta Años fue un conflicto europeo motivado por factores religiosos y políticos. La Paz de Westfalia (1648) estableció principios clave como la soberanía estatal y el equilibrio de poder.
+            </center></p>
+            <div class="image-container">
+                <img src="imagenes/6.jpg" alt="Guerra de los Treinta Años y Paz de Westfalia">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    </div>
+</div>
+<hr align="center" width="100%" size="2" noshade>
+<p align="left">
+<font color="#000000" size"2" face="verdana">
+<i>
+<center>  &copy; 2025. Derechos reservados. Elaborado por: "Zamora Quiroz Aurora Michel"  FEYRI<br> </center> 
+</i>
+</font>
+</p>
+</body>
+</html>
+
+
+
+
